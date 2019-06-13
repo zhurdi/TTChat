@@ -1,0 +1,170 @@
+<mat-toolbar color="primary" class="fixed-header navbar-static-top row">
+  <mat-toolbar-row> 
+      <a [routerLink]="['/login']"><span><img src="./assets/output-onlinepngtools (1).png" style="width:75%;"></span></a>
+    <div *ngIf="!_as.usuario.uid">
+        <a mat-button href="#myModalLogin" class="trigger-btn" data-toggle="modal">Login</a>
+        <a mat-button href="#myModalRegistro" class="trigger-btn" data-toggle="modal">Register</a>
+    </div>
+
+    <div *ngIf="_router.url != '/rooms'">
+        <a mat-button *ngIf="_as.usuario.uid" class="trigger-btn" [routerLink]="['/rooms']">
+          <mat-icon>list</mat-icon>Salas
+        </a>
+    </div>
+
+      <button mat-button [matMenuTriggerFor]="menu" *ngIf="_as.usuario.uid"><span><img src="{{_as.usuario.photoURL}}"
+            style="margin-left:7v; height: 35px; width: 35px;" class="rounded-circle"></span>
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <p style="text-align: center">{{_as.usuario.displayName}}</p>
+        <button mat-menu-item style="color: #3f51b5" href="#myModalEditarPerfil" data-toggle="modal">Editar
+          perfil</button>
+        <button mat-menu-item style="color: #3f51b5" (click)="_as.logout()">Cerrar sesión</button>
+      </mat-menu>
+
+      <a mat-button mat-icon-button class="valign-center" (click)="_as.logout()" *ngIf="_as.usuario.uid">
+        <mat-icon style="color: white;">exit_to_app</mat-icon>
+      </a>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+
+
+
+<!--MODAL LOGIN-->
+<div id="myModalLogin" class="modal fade" #btnClose>
+  <div class="modal-dialog modal-login">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="avatar">
+          <img src="../assets/logo7.png" alt="Avatar">
+        </div>
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn aria-hidden="true">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form #formData='ngForm' (ngSubmit)="loginEmail(formData)">
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="email"
+              required="required">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" required="required"
+              [(ngModel)]="password">
+          </div>
+          <div class="error" *ngIf="error">{{error}}</div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" aria-hidden="true"
+              [disabled]="!formData.valid">Login</button>
+            <hr>
+            <div>
+              <button type="button" class="google btn btn-danger" data-dismiss="modal" (click)="_as.login()"><i
+                  class="fab fa-google"></i> Log in with <b>Google</b></button>
+            </div>
+            <hr>
+            <div class="text-center">Aún no tienes cuenta? <a mat-button href="#myModalRegistro" class="trigger-btn"
+                data-dismiss="modal" data-toggle="modal" style="color: blue"> Regístrate ahora! </a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--MODAL REGISTRO-->
+<div id="myModalRegistro" class="modal fade">
+  <div class="modal-dialog modal-login">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="avatar">
+          <img src="../assets/logo7.png" alt="Avatar">
+        </div>
+        <h4 class="modal-title">Registrarse</h4>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn2 aria-hidden="true">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="userForm" #formData2='ngForm' (ngSubmit)="registerUser(formData2)">
+          <div class="form-group">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre obligatorio"
+              formControlName="nombre" [(ngModel)]="nombre" required>
+              <div *ngIf="formErrors.nombre">
+                {{ formErrors.nombre }}
+              </div>
+          </div>
+
+          <div class="form-group">
+            <input type="email" class="form-control" id="emailRegistro" name="emailRegistro"
+              placeholder="Email obligatorio" formControlName="email" [(ngModel)]="emailRegistro" required="required">
+            <div *ngIf="formErrors.email">
+              {{ formErrors.email }}
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="passwordRegistro" placeholder="Password"
+              formControlName="password" name="passwordRegistro" required="required" [(ngModel)]="passwordRegistro">
+            <div *ngIf="formErrors.password">
+              {{ formErrors.password }}
+            </div>
+          </div>
+
+          <div class="error" *ngIf="error"> {{ error }}</div>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block login-btn" aria-hidden="true"
+              [disabled]="!userForm.valid" [disabled]="!formData2.valid">Registrarse</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--MODAL EDITAR PERFIL-->
+<div id="myModalEditarPerfil" class="modal fade">
+  <div class="modal-dialog modal-login">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="avatar">
+          <img src="{{_as.usuario.photoURL}}" alt="Avatar" class="rounded-circle z-depth-0">
+        </div>
+        <h4 class="modal-title">MI PERFIL</h4>
+        <button type="button" class="close" data-dismiss="modal" #closeBtn3 aria-hidden="true">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <p>Nombre:</p>
+            <input type="text" #nombre3 class="form-control" value="{{_as.usuario.displayName}}">
+          </div>
+
+          <div class="form-group">
+            <p>Email:</p>
+            <input type="email" #email3 class="form-control" value="{{_as.usuario.email}}">
+          </div>
+
+          <div class="form-group">
+            <p>Role:</p>
+            <input type="text" #role class="form-control" [readonly]="true" value="{{_as.role}}">
+          </div>
+
+          <br>
+          <div class="form-groupd">
+            <button type="button" (click)="actualizarUsuario(nombre3.value, email3.value)"
+              class="btn btn-primary btn-lg btn-block login-btn" aria-hidden="true">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

@@ -1,0 +1,221 @@
+
+.overlay {
+    height: 100%;
+    width: 0;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0, 0.9);
+    overflow-x: hidden; 
+    transition: 0.3s; 
+  }
+  
+    .overlay-content {
+    position: relative;
+    top: 25%; 
+    width: 100%; 
+    text-align: center; 
+    margin-top: 30px; 
+  }
+  
+  .overlay a {
+    padding: 10px;
+    text-decoration: none;
+    font-size: 36px;
+    color: white;
+    display: block; 
+    transition: 0.3s; 
+  }
+
+  nav{
+    background: #039BE5;
+    width: 100%;
+    padding-left: 3%;
+
+  }
+
+  .navbar-brand {
+    padding: 1%;
+  }
+  .navbar-brand>img {
+    height: 75%;
+    padding: 15px;
+    width: auto;
+  }
+  
+  .overlay a:hover, .overlay a:focus {
+    color: blue;
+  }
+  
+  .overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+      font-size: 40px;
+      top: 15px;
+      right: 35px;
+    }
+  }
+
+  .text-center{
+    margin-bottom: 10px;
+  }
+
+  .valign-center {
+    vertical-align: middle;
+    align-items: center;
+  }
+
+  .navbar-toggler{
+    border-color: white;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  i.fas{
+    border-color: white;
+  }
+
+  .navbar-brand.fas.fa-bolt.fa-2x{
+    align-content: center;
+  }
+
+  button{
+    margin-right: 10px;
+  }
+
+  .mat-button.mat-primary .mat-button-focus-overlay {
+    background-color: white;
+  }
+
+  .link-btn .mat-button-focus-overlay {
+    background-color: white;
+}
+
+.mat-raised-button{
+  margin-right: 18%;
+}
+
+div .form-group{
+  color:red;
+  font-size: 0.75rem;
+}
+
+
+a{
+  color: white;
+}
+
+
+
+  body {
+    font-family: 'Varela Round', sans-serif;
+  }
+
+  .modal-login {
+    color: #636363;
+    width: 350px;
+    vertical-align: middle;
+  }
+
+  .modal-login .modal-content {
+    padding: 20px;
+    border-radius: 5px;
+    border: none;
+  }
+
+  .modal-login .modal-header {
+    border-bottom: none;
+    position: relative;
+    justify-content: center;
+  }
+
+  .modal-login h4 {
+    text-align: center;
+    font-size: 26px;
+    margin: 30px 0 -15px;
+  }
+
+  .modal-login .form-control:focus {
+    border-color: #70c5c0;
+  }
+
+  .modal-login .form-control,
+  .modal-login .btn {
+    min-height: 40px;
+    border-radius: 3px;
+    width: 100%;
+  }
+
+  .modal-login .modal-footer {
+    background: #ecf0f1;
+    border-color: #dee4e7;
+    text-align: center;
+    justify-content: center;
+    margin: 0 -20px -20px;
+    border-radius: 5px;
+    font-size: 13px;
+  }
+
+  .modal-login .modal-footer a {
+    color: #999;
+  }
+
+  .modal-login .avatar {
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #0D9644;
+    padding: 15px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .modal-login .avatar img {
+    width: 100%;
+  }
+
+  .error{
+    color: red;
+  }
+
+  .modal-login.modal-dialog {
+    margin-top: 80px;
+  }
+
+  .modal-login .btn {
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none;
+  }
+
+  .modal-login .btn:hover,
+  .modal-login .btn:focus {
+    background: #45aba6;
+    outline: none;
+  }
+
+  button:focus {
+    outline: none;
+  }
+
+  .trigger-btn {
+    display: inline-block;
+  }

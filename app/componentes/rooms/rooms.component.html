@@ -1,0 +1,315 @@
+<app-navbar></app-navbar>
+
+<div *ngIf="_as.usuario.uid">
+    <div class="container-fluid" style="background-color: #ECEFF1; margin-bottom: 350px;">
+        <div class="inbox_msg">
+
+            <!--TABS-->
+            <mat-tab-group (selectedTabChange)="tabClick($event)" [selectedIndex]="selectedIndex">
+                <mat-tab label="salas">
+                    <ng-template mat-tab-label>
+                        <mat-icon class="example-tab-icon">list</mat-icon>
+                        &nbsp;Salas
+                    </ng-template>
+
+                    <!--SALAS-->
+                    <div class="inbox_people">
+                        <div class="inbox_chat" style="overflow-y: auto; height: xyz;">
+                            <div class="row" id="sala"
+                                style="border: 0; margin: 0; padding: 0; background-color: #075E54;  color: white; height: 48px; align-content: center; padding-left: 6px;">
+                                Salas disponibles</div>
+
+                            <div *ngIf="this._as.role == 'admin'" id="añadirSala">
+                                <a mat-button href="#myModalCrearSala" data-toggle="modal">
+                                    <mat-icon class="example-tab-icon">add_circle</mat-icon>
+                                </a>
+                            </div>
+                            <div class="chat_list" *ngFor="let room of _rs.rooms">
+                                <div class="chat_people row">
+                                    <a mat-button (click)="loadMensajes(room.id, room.idioma, room.imagen, room.nivel)"
+                                        class="col-7">
+                                        <div class="chat_img"> <img src="{{room.imagen}}"> </div>
+                                        <div *ngIf="room.idioma != 'aa/general'">
+                                            <span class="chat_date">NIVEL {{room.nivel}}</span>
+                                        </div>
+                                        <div *ngIf="room.idioma == 'aa/general'">
+                                            <span class="chat_date">LOBBY</span>
+                                        </div>
+                                    </a>
+                                    <div *ngIf="room.idioma!=general">
+                                        <div *ngIf="this._as.role == 'admin'" class="col-1">
+                                            <a mat-button (click)="borrarSala(room.id)">
+                                                <mat-icon>delete_forever</mat-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--CHATS-->
+                    <div class="row"
+                        style="border: 0; margin: 0; padding: 0; background-color: #075E54;  color: white; height: 48px; align-content: center; padding-left: 8px;">
+                        <div class="chat_img" style="height: 1em;
+              width: 3em;
+              justify-content: center;
+              display: table"><img style="border-radius: 50%; " src="{{imagenSala}}"> </div>
+                        &nbsp;<span style="vertical-align: middle">Sala {{idiomaSala}} {{nivelSala}}</span>
+                    </div>
+                    <div class="mesgs" #chats>
+                        <div class="row">
+                            <div class="msg_history" style="overflow-y: auto; height: xyz;" #scrollMe1
+                                [scrollTop]="scrollMe1.scrollHeight">
+                                <div id="app-mensajes">
+                                    <div *ngFor="let chat of chatItems">
+                                        <div *ngIf="_as.usuario.uid != chat.uid">
+                                            <div class="received_msg">
+                                                <div class="received_withd_msg">
+                                                    <button mat-button [matMenuTriggerFor]="menu"
+                                                        style="text-align: left; padding: 0;">
+                                                        <div class="incoming_msg_img"> <img class="rounded-circle"
+                                                                src="{{chat.photoURL}}">
+                                                        </div>
+                                                        <span class="badge">{{chat.displayName}}
+                                                        </span>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu">
+                                                        <button mat-menu-item style="color: #3f51b5"
+                                                            (click)="cambiarTab(chat.uid)">Abrir chat
+                                                            privado</button>
+                                                            <div *ngIf="this._as.role == 'admin'">
+                                                        <button mat-menu-item style="color: #3f51b5"
+                                                            (click)="hacerAdmin(chat.uid)">Hacer 'admin'</button>
+                                                            </div>
+                                                    </mat-menu>
+                                                    <p class="text-left">{{chat.mensaje}}</p>
+                                                    <span class="time_date">
+                                                        {{chat.fecha | date:"HH:mm, d MMM"}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div *ngIf="_as.usuario.uid == chat.uid">
+                                            <div class="outgoing_msg">
+                                                <div class="sent_msg">
+                                                    <div>
+                                                        <div class="incoming_msg_img datos_user"> <img
+                                                                class="rounded-circle" src="{{chat.photoURL}}">
+                                                        </div>
+                                                        <span class="badge">{{chat.displayName}}
+                                                        </span>
+                                                    </div>
+                                                    <p class="text-right">{{chat.mensaje}}</p>
+                                                    <div class="fecha">
+                                                        <span class="time_date">
+                                                            {{chat.fecha | date:"HH:mm, d MMM"}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="row" style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
+
+                        <div class="col-1" style="align-content: center; display: flex; justify-content: center;">
+                            <button class="btn msg_send_btn rounded-circle" type="button" *ngIf="!speech.grabando"
+                                (click)="grabar()" placement="right">
+                                <i class="fa fa-microphone form-control-feedback"></i>
+                            </button>
+
+                            <button class="btn msg_send_btn rounded-circle" type="button" *ngIf="speech.grabando"
+                                placement="right" (click)="stop()" [ngStyle]="{'background-color': 'red'}">
+                                <i class="fa fa-microphone form-control-feedback"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-8" style="align-content: center; display: flex; justify-content: center;">
+                            <input type="text" class="form-control" name="mensaje" class="type_msg"
+                                [(ngModel)]="mensaje" (keyup.enter)="enviar_mensaje()">
+                        </div>
+
+                        <div class="col-1" style="align-content: center; display: flex; justify-content: center;">
+                            <button class="btn msg_send_btn rounded-circle" type="button" (click)="enviar_mensaje()"
+                                placement="right">
+                                <i class="fa fa-paper-plane-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                </mat-tab>
+
+
+
+
+                <!--CONVERSACIONES-->
+                <mat-tab label="conversaciones">
+                    <ng-template mat-tab-label>
+                        <mat-icon>chat_bubble</mat-icon>
+                        &nbsp;Chats
+                    </ng-template>
+
+                    <!--SALAS-->
+                    <div class="inbox_people">
+                        <div class="inbox_chat" style="overflow-y: auto; height: xyz;" #scrollMe2
+                            [scrollTop]="scrollMe2.scrollHeight">
+                            <div class="row" id="sala"
+                                style="border: 0; margin: 0; padding: 0; background-color: #075E54;  color: white; height: 48px; align-content: center; padding-left: 6px;">
+                                Chats disponibles</div>
+                            <div *ngIf="_css.listChats.length > 0">
+                                <div class="chat_list" *ngFor="let chat of _cs.listChats">
+                                    <div class="chat_people row">
+                                        <a mat-button (click)="loadMensajesPrivados(chat.uid)" class="col-7">
+                                            <div class="chat_img"> <img class="rounded-circle" src="{{chat.photoURL}}">
+                                            </div>
+                                            <p>{{chat.displayName}}</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="_css.listChats.length == 0 || _css.listChats.length == undefined">
+                                <div class="chat_list">
+                                    <h6> No tiene ningún chat disponible, abra un chat privado desde cualquiera de las
+                                        salas públicas
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--CHATS-->
+                    <div class="row"
+                        style="border: 0; margin: 0; padding: 0; background-color: #075E54;  color: white; height: 48px; align-content: center; padding-left: 8px;">
+                        <div *ngIf="_cs.datos_user!=null" id="sala">
+                            <div class="chat_img"
+                                style="height: 1em; width: 3em; justify-content: center; display: table"><img
+                                    style="border-radius: 50%; " src="{{_cs.datos_user.photoURL}}"> </div>
+                            &nbsp;<span style="vertical-align: middle">{{_cs.datos_user.displayName}} </span>
+                        </div>
+                        <div *ngIf="_cs.datos_user==null" id="sala">
+                            <span style="vertical-align: middle">Pulse en algún chat</span>
+                        </div>
+                    </div>
+                    <div class="mesgs" #chats>
+                        <div class="row">
+                            <div class="msg_history" style="overflow-y: scroll; height: xyz;" #scrollMe
+                                [scrollTop]="scrollMe.scrollHeight">
+                                <div id="app-mensajes">
+                                    <div *ngFor="let chat of chatItemsPrivado">
+                                        <div *ngIf="_as.usuario.uid != chat.uid">
+                                            <div class="received_msg">
+                                                <div class="received_withd_msg">
+                                                    <button mat-button style="text-align: left; padding: 0;">
+                                                        <div class="incoming_msg_img"> <img class="rounded-circle"
+                                                                src="{{chat.photoURL}}">
+                                                        </div>
+                                                        <span class="badge">{{chat.displayName}}
+                                                        </span>
+                                                    </button>
+                                                    <p class="text-left">{{chat.mensaje}}</p>
+                                                    <span class="time_date"> {{chat.fecha | date:"HH:mm, d MMM"}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div *ngIf="_as.usuario.uid == chat.uid">
+                                            <div class="outgoing_msg">
+                                                <div class="sent_msg">
+                                                    <div>
+                                                        <div class="incoming_msg_img datos_user"> <img
+                                                                class="rounded-circle" src="{{chat.photoURL}}">
+                                                        </div>
+                                                        <span class="badge">{{chat.displayName}}
+                                                        </span>
+                                                    </div>
+                                                    <p class="text-right">{{chat.mensaje}}</p>
+                                                    <div class="fecha">
+                                                        <span class="time_date">
+                                                            {{chat.fecha | date:"HH:mm, d MMM"}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div class="row" style="padding-top: 10px; padding-left: 20px; padding-bottom: 10px;">
+
+                        <div class="col-1" style="align-content: center; display: flex; justify-content: center;">
+                            <button class="btn msg_send_btn rounded-circle" type="button" *ngIf="!speech.grabando"
+                                (click)="grabar()" placement="right">
+                                <i class="fa fa-microphone form-control-feedback"></i>
+                            </button>
+
+                            <button class="btn msg_send_btn rounded-circle" type="button" *ngIf="speech.grabando"
+                                placement="right" (click)="stop()" [ngStyle]="{'background-color': 'red'}">
+                                <i class="fa fa-microphone form-control-feedback"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-8" style="align-content: center; display: flex; justify-content: center;">
+                            <input type="text" class="form-control" name="mensaje" class="type_msg"
+                                [(ngModel)]="mensaje" (keyup.enter)="enviar_mensaje()">
+                        </div>
+
+                        <div class="col-1" style="align-content: center; display: flex; justify-content: center;">
+                            <button class="btn msg_send_btn rounded-circle" type="button" (click)="enviar_mensaje()"
+                                placement="right">
+                                <i class="fa fa-paper-plane-o"></i>
+                            </button>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!_as.usuario.uid">
+    <div class="container">
+        <h3>Necesita loguearse para acceder. </h3><a [routerLink]="['/login']" routerLinkActive="active">Volver</a>
+    </div>
+</div>
+
+
+<!--MODAL CREAR SALA-->
+<div id="myModalCrearSala" class="modal fade col-xs-12">
+    <div class="modal-dialog modal-login col-xs-12" style="padding: 5%;">
+        <div class="modal-content col-xs-12" style="padding: 5%;">
+            <div class="modal-header">
+                <h5 class="modal-title">Crear sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="idioma" class="col-form-label">Idioma:</label>
+                    <select #idioma class="form-control form-control-sm" id="idioma">
+                        <option *ngFor="let idioma of _rs.idiomas">{{idioma}}</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="nivel" class="col-form-label">Nivel:</label>
+                    <select #nivel class="form-control form-control-sm" id="nivel">
+                        <option *ngFor="let nivel of _rs.niveles">{{nivel}}</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button (click)="crearSala(idioma.value,nivel.value)" type="submit"
+                        class="btn btn-primary text-center btn-sm" data-dismiss="modal"
+                        data-toggle="modal">Añadir</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="submit" class="btn btn-primary text-center btn-sm" data-dismiss="modal"
+                        data-toggle="modal">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<app-footer></app-footer>

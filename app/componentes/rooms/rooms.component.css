@@ -1,0 +1,386 @@
+.container{
+    margin:auto;
+    margin-top: 5%;
+  }
+
+img{ 
+  max-width: 60%;
+  }
+
+.inbox_people {
+  background: #f8f8f8 none repeat ;
+  float: left;
+  overflow: hidden;
+  width: 30%; border-right:1px solid #c4c4c4;
+}
+.inbox_msg {
+  clear: both;
+  overflow: hidden;
+  height: 85.rem;
+  background-color: white;
+  border-radius: 9px;
+}
+.top_spac{ margin: 20px 0 0;}
+
+.recent_heading {float: left; width:40%;}
+.srch_bar {
+  display: inline-block;
+  text-align: right;
+  width: 60%; 
+  padding: 1%;
+}
+.headind_srch{ padding:10px 29px 10px 20px; overflow:hidden; border-bottom:1px solid #c4c4c4;}
+
+.recent_heading h4 {
+  color: #05728f;
+  font-size: 21px;
+  margin: auto;
+}
+.srch_bar input{ border:1px solid #cdcdcd; border-width:0 0 1px 0; width:80%; padding:2px 0 4px 6px; background:none;}
+.srch_bar .input-group-addon button {
+  background: rgba(0, 0, 0, 0) none repeat ;
+  border: medium none;
+  padding: 0;
+  color: #707070;
+  font-size: 18px;
+}
+.srch_bar .input-group-addon { margin: 0 0 0 -27px;}
+
+.chat_ib h5{ font-size:15px; color:#464646; margin:0 0 8px 0;}
+.chat_ib h5 span{ font-size:13px; float:right;}
+.chat_ib p{ font-size:14px; color:#989898; margin:auto}
+.chat_img {
+  float: left;
+  width: 31%;
+  border-radius: 3px;
+}
+.chat_ib {
+  float: left;
+  padding: 0 0 0 15px;
+  width: 88%;
+}
+
+.chat_people{ overflow:hidden; clear:both;}
+.chat_list {
+  border-bottom: 1px solid #c4c4c4;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.inbox_chat { 
+  height: 740px; 
+  overflow-y: scroll; 
+  overflow-x: inherit; 
+  background-color: white;
+}
+
+.active_chat{ background:white;}
+
+.incoming_msg_img {
+  display: inline-block;
+  width: 15%;
+  border-radius: 5%;
+}
+
+#añadirSala{
+  color: green;
+}
+
+
+button:focus {
+  outline: none;
+}
+
+#myModalCrearSala{
+  margin:10%;
+}
+
+
+.received_msg {
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+  margin-top: 3vmin;
+ }
+ .received_withd_msg p {
+  background: #dbe6df none repeat;
+  border-radius: 3px;
+  color: #2b2929;
+  font-size: 14px;
+  padding: 5px 10px 5px 12px;
+  width: fit-content;
+  margin-bottom: 0;
+}
+.time_date {
+  color: #747474;
+  font-size: 12px;
+}
+.received_withd_msg {  
+  margin-top: 3vmin;
+  width: 75%;
+}
+.badge{
+  font-size: 82%;
+  color: black;
+}
+
+.in{
+  width: 100%;
+}
+
+.fecha{
+  margin-top: 33px;
+}
+
+.mesgs {
+  padding: 30px 15px 0 25px;
+  width: 70%;
+  overflow-y: auto;
+  background-color: #f5f4e3;
+}
+.mesgs img{
+  width: 300px;
+}
+
+hr{
+  width: 80%;
+  padding-right: 0.5vw;
+}
+ .sent_msg p {
+  width: intrinsic;           
+  width: -moz-max-content;    
+  width: -webkit-max-content; 
+  background: #05728f none repeat ;
+  border-radius: 3px;
+  font-size: 14px;
+  color:#fff;
+  padding: 5px 10px 5px 12px;
+  width: fit-content;
+  float: right;
+  margin-bottom: 0;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+
+
+.outgoing_msg{ 
+  overflow:hidden;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+  margin-top: 3vmin;
+}
+
+.received_msg {
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 92%;
+  margin-top: 3vmin;
+ }
+
+.sent_msg {
+  float: right;
+  width: 400px;
+  margin-top: 3vmin;
+  max-width: 92%; 
+  text-align: right;
+}
+.input_msg_write input {
+  background: rgba(0, 0, 0, 0) none repeat;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 15px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.icon-addon {
+  position: relative;
+  color: #555;
+  display: block;
+}
+
+.row{
+  margin-bottom: 0;
+  padding-bottom: 10px;
+}
+
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+
+.formInput{
+  margin-bottom: 6vmin;
+}
+
+.container-fluid{
+  justify-content: center;
+  padding: 2%;
+}
+
+.type_msg {
+  border: 1px solid #05728f;
+  position: relative;
+  border-radius: 5px;
+  width: 100%;
+  padding-left: 30px;
+}
+.msg_send_btn {
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  background-color: #05728f;
+}
+
+.msg_history {
+  height: 636px;
+  width: 100%
+}
+
+
+/* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+@media screen and (min-width: 601px) {
+  .chat_people{
+    font-size: 18px;
+}
+.chat_img{
+  width: 31%
+}
+.badge{
+  font-size: 92%;
+  padding-left: 24px;
+}
+img{
+  max-width: 31px;
+}
+
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  .chat_people {
+    font-size: 10px;
+  }
+  img{
+    max-width: 25px;
+  }
+  .chat_img{
+    width: 75%
+  }
+
+  .time_date{
+    font-size: 10px;
+    padding: 0;
+  }
+
+  .sent_msg p{
+    font-size: 12px;
+    max-width: 100%;
+  }
+
+  .received_withd_msg p{
+    font-size: 12px;
+  }
+
+  .received_withd_msg{
+    font-size: 11px;
+  }
+
+  .received_msg{
+    padding: 0px;
+  }
+
+  .mesgs{
+    height: 450px;
+  }
+  
+  .badge{
+    padding-left: 10px;
+  }
+
+  .row, .chat_list{
+    font-size: 12px;
+  }
+
+  .row{
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .incoming_msg_img{
+    width: 31%;
+  }
+
+  .container-fluid{
+    height: 430px;
+  }
+
+  .inbox_msg{
+    height: 610px;
+  }
+
+  .fecha{
+    margin-top: 28px;
+  }
+
+}
+
+
+.dropdown-menu.multi-column {
+    width: 400px;
+}
+
+.dropdown-menu.multi-column .dropdown-menu {
+    display: block !important;
+    position: static !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    min-width:100px;
+}
+
+.speech-bubble {
+	position: relative;
+	background: #00aabb;
+  border-radius: .4em;
+  padding: 0px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: #00aabb;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
+
+.mat-button {
+  font-size: inherit;
+
+}
+
+
+
+

@@ -1,0 +1,197 @@
+<!--<ul>
+  <li class="text" *ngFor="let chat of chats | async">
+    {{chat.mensaje}}
+  </li>
+</ul>-->                    
+
+
+<!--<div class="app-header">
+    <div style="text-align:center">
+        <img src="../assets/logo.png">
+      </div>
+  <div *ngIf="_cs.usuario.uid" style="text-align:right">
+    <button type="button" class="btn btn-outline-danger" (click)="_cs.logout()">
+      <i class="fas fa-sign-out-alt"></i>
+    </button>    
+  </div>
+</div>-->
+
+<router-outlet></router-outlet>
+
+
+<!--<div class="row">
+  <div class="col-md-12 form-group text-center">
+    <form>
+      <h1>LOGIN</h1>
+      <input placeholder="email" type="text" required=""  [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
+      <input placeholder="pass" type="password" required=""  [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+      <button type="submit" class="btn btn-success" (click)="loginEmail()"> Login</button>
+      <div class="or-seperator"><i>or</i></div>
+      <button type="button" class="google btn btn-danger" (click)="_cs.login('google')"><i class="fab fa-google"></i>  Sign in with <b>Google</b></button>
+    </form>
+    <br>
+    <div class="hint-text small">Don't have an account? <a href="#" class="text-success"> Register Now! </a></div>
+  </div>  
+</div>
+
+
+<div class="container main-container">
+  <div *ngIf="!_cs.usuario.uid">
+    <app-login></app-login>
+  </div>  
+  <div class="chat-window" *ngIf="_cs.usuario.uid">
+    <app-chat></app-chat>
+  </div>
+</div>-->
+
+
+
+
+
+
+<!--
+ 
+<mat-grid-list cols="3">
+    <mat-grid-tile>
+      Prueba
+    </mat-grid-tile>
+ 
+
+    <mat-grid-tile class='login-element'>
+        <div class="login-container">
+ 
+
+            <div class="login-box-header">
+
+            </div>
+
+            <div class="login-box-body">
+ 
+
+                <mat-grid-list cols="9" rowHeight="75px">
+                    <mat-grid-tile [rowspan]="1" class="login-icon">
+                        <mat-icon>email</mat-icon>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="7">
+                        <mat-form-field class="justifier">
+                          <input matInput placeholder="Input">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+
+                <mat-grid-list cols="9" rowHeight="100px">
+                    <mat-grid-tile [rowspan]="1"  class="login-icon">
+                        <mat-icon>lock</mat-icon>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="7">
+                        <mat-form-field class="justifier">
+                          <input matInput placeholder="Input">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+ 
+                <button md-raised-button class="login-button"> 
+                    <mat-icon>input</mat-icon> Login
+                </button>
+ 
+            </div>
+            
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile></mat-grid-tile> 
+</mat-grid-list>
+
+
+
+
+<mat-sidenav-container>
+  <mat-sidenav  #sidenav role="navigation">
+   <mat-nav-list>
+    <a mat-list-item>
+      <mat-icon class="icon">input</mat-icon>
+      <span class="label">Login</span>
+    </a>
+    <a mat-list-item>
+      <mat-icon class="icon">home</mat-icon>
+        <span class="label">Home</span>
+    </a>
+    <a mat-list-item>
+      <mat-icon class="icon">dashboard</mat-icon>
+      <span class="label">Dashboard</span>
+    </a>
+    <a  mat-list-item type="button">
+      <mat-icon class="icon">input</mat-icon>
+      <span class="label">LogOut</span>
+    </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+     <div fxHide.gt-xs>
+       <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+     <div>
+       <a>
+          <img src="../assets/logo.png">
+       </a>
+     </div>
+     <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
+        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+            <li>
+                <a>
+                  <mat-icon class="icon">input</mat-icon>
+                  <span  class="label">Login</span>
+                 </a>
+            </li>
+            <li>
+              <a >
+                  <mat-icon class="icon">home</mat-icon>
+                  <span class="label">Home</span>
+              </a>
+            </li>
+            <li>
+                <a>
+                    <mat-icon class="icon">dashboard</mat-icon>
+                    <span class="label">Dashboard</span>
+                </a>
+              </li>
+            <li>
+                <a>
+                  <mat-icon class="icon">input</mat-icon>
+                  <span class="label">LogOut</span>
+                 </a>
+            </li>
+        </ul>
+     </div>
+     
+    </mat-toolbar>    
+    <main>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+-->
+
+<!-- nav -->
+<!--
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  <div class="navbar-nav">
+      <a class="nav-item nav-link" routerLink="/">Home</a>
+      <a class="nav-item nav-link" routerLink="/login">Login</a>
+      <a class="nav-item nav-link" routerLink="/register">Register</a>
+  </div>
+</nav>
+-->
+<!-- main content container 
+<div class="jumbotron">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-8 offset-sm-2">
+            <router-outlet></router-outlet>
+          </div>
+      </div>
+  </div>
+</div>
+-->
